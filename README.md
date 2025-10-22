@@ -9,6 +9,7 @@ TODO
 - [ ] type namespace 声明文件编写
 - [ ] pinia 支持
 - [ ] loading 指令
+- [ ] dayjs 支持 
 
 
 - [ ] icon使用示例
