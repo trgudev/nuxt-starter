@@ -8,7 +8,10 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxi typecheck",
+    "commit": "soy git-commit",
+    "commit:zh": "soy git-commit -l=zh-cn",
+    "prepare": "simple-git-hooks"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.70",
@@ -18,13 +21,23 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
+    "@soybeanjs/cli": "^1.4.0",
     "eslint": "^9.38.0",
+    "lint-staged": "^16.2.5",
     "prettier": "3.6.2",
+    "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.1"
   },
   "resolutions": {
     "unimport": "4.1.1"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "pnpm soy git-commit-verify",
+    "pre-commit": "pnpm typecheck && pnpm lint-staged"
   },
   "packageManager": "pnpm@10.18.3"
 }
