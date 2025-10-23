@@ -10,6 +10,8 @@ export default defineNuxtConfig({
   },
 
   app: {
+    baseURL: import.meta.env.NUXT_APP_BASE_URL || '/',
+
     head: {
       title: 'The website title',
       meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }]

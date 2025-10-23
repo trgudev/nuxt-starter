@@ -1,0 +1,91 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to GitHub Pages
+
+on:
+  # 仅在推送到 "main" 分支时触发
+  push:
+    branches: [ "main" ]
+  # 允许你手动从 Actions 选项卡运行此工作流
+  workflow_dispatch:
+
+# 设置权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 设置并发控制
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.3
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Get repository name
+        # 从 GITHUB_REPOSITORY (例如 "your-user/your-repo") 中提取 "your-repo"
+        run: echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)" >> $GITHUB_ENV
+
+      - name: Build for GitHub Pages
+        # (!!!) 设置 NUXT_APP_BASE_URL (对应步骤一)
+        env:
+          NUXT_APP_BASE_URL: /${{ env.REPO_NAME }}/
+        run: pnpm build # 这会运行 nuxt build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Nuxt 的 SSG 输出目录
+          path: ./.output/public
+
+  # 部署作业
+  deploy:
+    # 依赖 "build" 作业
+    needs: build
+
+    # 权限
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # 部署完成后会输出 URL
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
