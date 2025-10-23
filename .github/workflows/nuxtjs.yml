@@ -1,0 +1,74 @@
+# .github/workflows/nuxtjs.yml
+
+name: Nuxt.js CI
+
+# 控制工作流何时运行
+on:
+  # 在推送到 "main" 分支时触发
+  push:
+    branches: [ "main" ]
+  # 在向 "main" 分支发起 Pull Request 时触发
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # 定义一个名为 "build-and-test" 的作业
+  build_and_test:
+    # 指定运行此作业的操作系统
+    runs-on: ubuntu-latest
+
+    steps:
+      # 步骤1: 检出你的仓库代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 步骤2: 设置 Node.js 环境
+      # Nuxt 4 需要较新的 Node.js 版本，这里我们使用 v20
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 步骤3: 设置 pnpm
+      # 这是关键一步，我们使用 pnpm/action-setup 来安装 pnpm
+      # 并且指定了版本号，与你 package.json 中的 "packageManager" 字段一致
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.3
+          run_install: false # 我们将在下一步手动运行 pnpm install
+
+      # 步骤4: 获取 pnpm 缓存目录（用于加速）
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      # 步骤5: 设置 pnpm 缓存（用于加速后续构建）
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # 步骤6: 安装项目依赖
+      # pnpm install 会自动运行 "postinstall" 脚本 (nuxt prepare)
+      - name: Install dependencies
+        run: pnpm install
+
+      # 步骤7: 运行代码风格检查
+      # 对应 "lint": "eslint ." 脚本
+      - name: Run linting
+        run: pnpm lint
+
+      # 步骤8: 运行 TypeScript 类型检查
+      # 对应 "typecheck": "nuxi typecheck" 脚本
+      - name: Run type checking
+        run: pnpm typecheck
+
+      # 步骤9: 构建项目
+      # 对应 "build": "nuxt build" 脚本
+      - name: Build project
+        run: pnpm build
