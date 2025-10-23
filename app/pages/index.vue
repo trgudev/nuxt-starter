@@ -83,114 +83,7 @@ const page = ref({
         }
       ]
     }
-  ],
-  testimonials: {
-    headline: 'Trusted by Developers',
-    title: 'Join Thousands Building with Nuxt UI',
-    description: 'See why developers choose Nuxt UI to ship their SaaS applications faster and with more confidence.',
-    items: [
-      {
-        quote: 'Nuxt UI transformed how we build. The component quality is exceptional - everything just works with perfect TypeScript support, accessibility, and dark mode built in.',
-        user: {
-          name: 'Sarah Chen',
-          description: 'CTO at TechScale Solutions',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=1'
-          }
-        }
-      },
-      {
-        quote: 'We shipped our MVP in 2 weeks instead of 2 months. The authentication flows and form components saved us countless hours of development time.',
-        user: {
-          name: 'Marcus Rodriguez',
-          description: 'VP of Engineering at DataFlow',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=7'
-          }
-        }
-      },
-      {
-        quote: 'The design system with AppConfig is brilliant. We maintain brand consistency across all our products while leveraging the full component library.',
-        user: {
-          name: 'David Kumar',
-          description: 'Security Director at SecureStack',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=3'
-          }
-        }
-      },
-      {
-        quote: 'Perfect Lighthouse scores out of the box. Our Core Web Vitals improved dramatically just by switching to Nuxt UI components.',
-        user: {
-          name: 'Emily Zhang',
-          description: 'Lead Architect at ScaleForce',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=5'
-          }
-        }
-      },
-      {
-        quote: 'The Tailwind Variants system makes customization so intuitive. We can override any component style while keeping the functionality intact.',
-        user: {
-          name: 'James Wilson',
-          description: 'DevOps Lead at CloudPro',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=8'
-          }
-        }
-      },
-      {
-        quote: 'From the SaaS template to production in days. The pre-built layouts, navigation, and content structure accelerated our launch.',
-        user: {
-          name: 'Lisa Patel',
-          description: 'CEO at AutoScale',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=9'
-          }
-        }
-      },
-      {
-        quote: 'Reka UI foundation means accessibility is never an afterthought. We achieved WCAG compliance without any custom work.',
-        user: {
-          name: 'Michael Torres',
-          description: 'Frontend Lead at AccessFirst',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=11'
-          }
-        }
-      },
-      {
-        quote: 'The documentation is outstanding. Every component has clear examples, and the community on Discord is incredibly helpful.',
-        user: {
-          name: 'Rachel Kim',
-          description: 'Performance Engineer at APIHub',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=10'
-          }
-        }
-      },
-      {
-        quote: 'We replaced three different UI libraries with Nuxt UI. The consistency and quality across all components is unmatched.',
-        user: {
-          name: 'Thomas Weber',
-          description: 'UI Architecture Lead at DesignScale',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=12'
-          }
-        }
-      },
-      {
-        quote: 'The integration with Nuxt modules is seamless. Color mode, fonts, icons - everything works together perfectly.',
-        user: {
-          name: 'Sophia Martinez',
-          description: 'Integration Specialist at TechFlow',
-          avatar: {
-            src: 'https://i.pravatar.cc/120?img=14'
-          }
-        }
-      }
-    ]
-  }
+  ]
 })
 
 const title = 'Nuxt UI Starter Template'
@@ -240,33 +133,6 @@ useSeoMeta({
           spotlight
         />
       </UPageGrid>
-    </UPageSection>
-
-    <UPageSection
-      id="testimonials"
-      :headline="page.testimonials.headline"
-      :title="page.testimonials.title"
-      :description="page.testimonials.description"
-    >
-      <UPageColumns class="xl:columns-4">
-        <UPageCard
-          v-for="(testimonial, index) in page.testimonials.items"
-          :key="index"
-          variant="subtle"
-          :description="testimonial.quote"
-          :ui="{
-            description:
-              'before:content-[open-quote] after:content-[close-quote]'
-          }"
-        >
-          <template #footer>
-            <UUser
-              v-bind="testimonial.user"
-              size="lg"
-            />
-          </template>
-        </UPageCard>
-      </UPageColumns>
     </UPageSection>
   </div>
 </template>
