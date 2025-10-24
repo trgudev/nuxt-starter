@@ -1,0 +1,26 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "eslint.validate": [
+    "html",
+    "css",
+    "scss",
+    "json",
+    "jsonc",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+
+  "prettier.enable": false,
+
+  "fileHeader.config.autoAdd": false,
+  "fileheader.autoInsertOnCreateFile": false
+}
