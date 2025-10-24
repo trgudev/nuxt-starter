@@ -11,7 +11,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer>
+  <UContainer v-loading="true">
     <UPageHeader
       :title
       :description

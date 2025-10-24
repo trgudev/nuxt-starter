@@ -5,13 +5,11 @@ TODO
 - [ ] 环境变量区分
 - [ ] docker 支持
 - [ ] pinia 支持
-- [ ] loading 指令
-
-
 
 - [ ] nuxt img 示例
 - [ ] vueuse 示例
 
+- [x] loading 指令
 - [x] 请求示例
 - [x] icon
 - [x] git 提交示例

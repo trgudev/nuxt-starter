@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/loading.css'],
 
   ui: {
     fonts: false
