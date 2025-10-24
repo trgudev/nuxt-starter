@@ -57,7 +57,6 @@ declare namespace Api {
       email: string
       fullName: string
       isActive: boolean
-      isSuperAdmin: boolean
       createdAt: string
       updatedAt: string
     }
