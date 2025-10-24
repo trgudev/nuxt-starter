@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
+import { useUserStore } from '~/store/user'
 
 definePageMeta({
   layout: 'auth'
@@ -12,18 +13,21 @@ useSeoMeta({
 })
 
 const toast = useToast()
+const userStore = useUserStore()
 
 const fields = [{
   name: 'email',
   type: 'text' as const,
   label: 'Email',
   placeholder: 'Enter your email',
+  defaultValue: 'li@qq.com',
   required: true
 }, {
   name: 'password',
   label: 'Password',
   type: 'password' as const,
-  placeholder: 'Enter your password'
+  placeholder: 'Enter your password',
+  defaultValue: 'password123456789'
 }, {
   name: 'remember',
   label: 'Remember me',
@@ -51,8 +55,8 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload)
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  await userStore.handleLogin(payload.data)
 }
 </script>
 
@@ -66,10 +70,13 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
     @submit="onSubmit"
   >
     <template #description>
-      Don't have an account? <ULink
+      Don't have an account?
+      <ULink
         to="/signup"
         class="text-primary font-medium"
-      >Sign up</ULink>.
+      >
+        Sign up
+      </ULink>.
     </template>
 
     <template #password-hint>

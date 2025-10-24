@@ -21,6 +21,8 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
     // http 状态码 200 201 302 等
     onResponse({ response }) {
+      console.log(response)
+
       const apiResponse = response._data as App.Service.Response<T>
 
       if (response.status < 400 && apiResponse?.code !== 0) {
@@ -58,7 +60,7 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
         // access token 过期
         if (request.toString() === 'login url') {
-          await userStore.refreshAccessToken()
+          await userStore.handleRefreshToken()
 
           const headers = { ...options.headers, Authorization: userStore.authorization! }
 
