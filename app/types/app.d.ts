@@ -4,12 +4,19 @@ declare namespace App {
   namespace Service {
     /** The backend service response data */
     type Response<T = unknown> = {
-    /** The backend service response code */
       code: number
-      /** The backend service response message */
       message: string
-      /** The backend service response data */
       data: T
     }
+  }
+
+  namespace Button {
+    /** The u-button component config */
+    type Button = ComponentConfig<typeof theme, AppConfig, 'button'>
+
+    type Color = Button['variants']['color']
+
+    type Color = Button['variants']['variant']
+
   }
 }
