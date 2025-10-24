@@ -7,6 +7,14 @@ export default withNuxt({
     '@typescript-eslint/no-explicit-any': 'off',
     'no-useless-catch': 'off',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-    'no-console': ['warn', { allow: ['error'] }]
+    'no-console': ['warn', { allow: ['error'] }],
+    'vue/block-order': ['error', {
+      order: [
+        'script[setup]',
+        'script',
+        'template',
+        'style'
+      ]
+    }]
   }
 })
