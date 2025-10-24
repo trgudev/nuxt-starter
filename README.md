@@ -8,10 +8,11 @@ TODO
 - [ ] loading 指令
 
 
-- [ ] 请求示例
+
 - [ ] nuxt img 示例
 - [ ] vueuse 示例
 
+- [x] 请求示例
 - [x] icon
 - [x] git 提交示例
 - [x] type namespace 声明文件编写
