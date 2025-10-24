@@ -6,6 +6,13 @@ export function fetchLogin(loginToken: Api.UserManage.LoginParams) {
   })
 }
 
+// 获取用户信息
+export function fetchUserInfo() {
+  return useApiRequest<Api.Auth.UserInfo>('/api/auth/user', {
+    method: 'get'
+  })
+}
+
 // 刷新 Access Token
 export function fetchRefreshToken(refreshToken: string) {
   return useApiRequest<Api.Auth.LoginToken>('/api/auth/refresh', {

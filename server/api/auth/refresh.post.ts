@@ -5,33 +5,40 @@ export default defineEventHandler(async (event) => {
   const { refreshToken } = await readBody(event)
 
   if (!refreshToken) {
-    throw createError({
-      statusCode: 400,
-      message: 'Missing refresh token'
-    })
+    setResponseStatus(event, 401)
+
+    return {
+      code: 1,
+      message: 'Missing refresh token',
+      data: null
+    }
   }
 
   const verification = verifyToken(refreshToken)
 
   // 1. 验证 Refresh Token 是否有效
   if (!verification.valid) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-      message: `Refresh token invalid: ${verification.error}`
-    })
+    setResponseStatus(event, 401)
+
+    return {
+      code: 1,
+      message: 'Refresh token invalid',
+      data: null
+    }
   }
 
   // 2. 验证类型是否为 'refresh'
   if (verification.payload.type !== 'refresh') {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-      message: 'Invalid token type, expected refresh token'
-    })
+    setResponseStatus(event, 401)
+
+    return {
+      code: 1,
+      message: 'Invalid token type, expected refresh token',
+      data: null
+    }
   }
 
-  // 3. 签发新的 Access Token
+  // 2. 签发新的 Access Token
   const now = Date.now()
   const accessTokenExpires = now + 1 * 60 * 1000 // 1 分钟
   const newAccessToken = createToken({
@@ -41,7 +48,10 @@ export default defineEventHandler(async (event) => {
   })
 
   return {
+    code: 0,
     message: 'Token 刷新成功!',
-    accessToken: newAccessToken
+    data: {
+      accessToken: newAccessToken
+    }
   }
 })

@@ -1,44 +1,52 @@
 import { verifyToken } from '../../utils/token'
 
 export default defineEventHandler(async (event) => {
-  // 客户端应该在请求头中携带 Access Token
-  // Authorization: Bearer <your_access_token>
   const authHeader = getRequestHeader(event, 'Authorization')
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-      message: 'Missing authorization header'
-    })
+    setResponseStatus(event, 401)
+
+    return {
+      code: 1,
+      message: 'Missing authorization header',
+      data: null
+    }
   }
 
   const token = authHeader.split(' ')[1]
   const verification = verifyToken(token)
 
-  // 验证失败
   if (!verification.valid) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-      message: verification.error // "Token expired" 或 "Invalid token format"
-    })
+    setResponseStatus(event, 401)
+    return {
+      code: 1,
+      message: verification.error,
+      data: null
+    }
   }
 
   // 验证成功, 确保它是 access token
   if (verification.payload.type !== 'access') {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-      message: 'Invalid token type, expected access token'
-    })
+    setResponseStatus(event, 401)
+    return {
+      code: 1,
+      message: 'Invalid token type, expected access token',
+      data: null
+    }
   }
 
   // 验证通过
   return {
+    code: 0,
     message: 'Token 验证成功!',
-    user: {
-      id: verification.payload.userId
+    data: {
+      id: verification.payload.userId,
+      username: 'li',
+      email: 'li@qq.com',
+      fullName: 'lili',
+      isActive: true,
+      createdAt: '2023-01-01T00:00:00.000Z',
+      updatedAt: '2023-01-01T00:00:00.000Z'
     }
   }
 })

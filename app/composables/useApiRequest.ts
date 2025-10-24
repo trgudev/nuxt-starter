@@ -21,11 +21,9 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
     // http 状态码 200 201 302 等
     onResponse({ response }) {
-      console.log(response)
-
       const apiResponse = response._data as App.Service.Response<T>
 
-      if (response.status < 400 && apiResponse?.code !== 0) {
+      if (response.status < 400 && apiResponse?.code !== import.meta.env.NUXT_API_SUCCESS_CODE) {
         const description = apiResponse?.message || 'An unknown error occurred.'
         toast.add({
           title: 'Operation Failed',
@@ -45,7 +43,7 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
       if (status === 401) {
         // refresh token 过期
-        if (request.toString() === 'refresh token api url') {
+        if (request.toString() === import.meta.env.NUXT_SERVER_REFRESH_TOKEN_URL) {
           router.replace('/login')
 
           toast.add({
@@ -59,13 +57,11 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
         }
 
         // access token 过期
-        if (request.toString() === 'login url') {
-          await userStore.handleRefreshToken()
+        await userStore.handleRefreshToken()
 
-          const headers = { ...options.headers, Authorization: userStore.authorization! }
+        const headers = { ...options.headers, Authorization: userStore.authorization! }
 
-          useApiRequest(request as string, { ...options, headers })
-        }
+        useApiRequest(request as string, { ...options, headers })
 
         return
       }
