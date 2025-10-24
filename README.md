@@ -1,14 +1,14 @@
 TODO
 
 
-- [ ] 完善 dashboard 布局
 - [ ] 环境变量区分
 - [ ] docker 支持
-- [ ] pinia 支持
+
 
 - [ ] nuxt img 示例
 - [ ] vueuse 示例
 
+- [x] pinia 支持
 - [x] loading 指令
 - [x] 请求示例
 - [x] icon
