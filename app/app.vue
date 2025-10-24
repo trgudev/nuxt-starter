@@ -1,7 +1,17 @@
+<template>
+  <UApp>
+    <NuxtLoadingIndicator />
+
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
+</template>
+
 <script setup lang="ts">
 const colorMode = useColorMode()
 
-const color = computed(() => colorMode.value === 'dark' ? '#020618' : 'white')
+const color = computed(() => (colorMode.value === 'dark' ? '#020618' : 'white'))
 
 useHead({
   meta: [
@@ -9,9 +19,7 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { key: 'theme-color', name: 'theme-color', content: color }
   ],
-  link: [
-    { rel: 'icon', href: '/favicon.ico' }
-  ],
+  link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
     lang: 'en'
   }
@@ -22,13 +30,3 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 </script>
-
-<template>
-  <UApp>
-    <NuxtLoadingIndicator />
-
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </UApp>
-</template>
