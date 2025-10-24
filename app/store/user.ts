@@ -56,6 +56,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function handleRefreshToken() {
     try {
+      if (!tokenInfo.value.refreshToken) return false
       const { data } = await fetchRefreshToken(tokenInfo.value.refreshToken)
       setToken(data.accessToken)
 

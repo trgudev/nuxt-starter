@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="flex flex-col mt-20 items-center justify-center gap-4">
+    <div>{{ userInfo }}</div>
+
     <UButton @click="handleGetUserInfo">
       获取用户信息
     </UButton>
-
-    {{ userInfo }}
   </div>
 </template>
 
@@ -27,5 +27,3 @@ const handleGetUserInfo = async () => {
   await userStore.getUserInfo()
 }
 </script>
-
-<style lang='scss' scoped></style>

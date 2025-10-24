@@ -8,6 +8,15 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
   const toast = useToast()
   const router = useRouter()
 
+  const showRefreshTokenExpiredToast = () => {
+    toast.add({
+      title: 'Authentication Error (401)',
+      description: 'Your token has expired. Please log in again.',
+      color: 'error',
+      icon: 'i-heroicons-exclamation-circle'
+    })
+  }
+
   const defaults: FetchOptions<'json'> = {
     baseURL: config.public.API_BASE_URL as string,
 
@@ -23,7 +32,7 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
     onResponse({ response }) {
       const apiResponse = response._data as App.Service.Response<T>
 
-      if (response.status < 400 && apiResponse?.code !== import.meta.env.NUXT_API_SUCCESS_CODE) {
+      if (response.status < 400 && apiResponse?.code !== Number(config.public.SERVER_SUCCESS_CODE)) {
         const description = apiResponse?.message || 'An unknown error occurred.'
         toast.add({
           title: 'Operation Failed',
@@ -43,25 +52,26 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
       if (status === 401) {
         // refresh token 过期
-        if (request.toString() === import.meta.env.NUXT_SERVER_REFRESH_TOKEN_URL) {
+        if (request.toString() === config.public.SERVER_REFRESH_TOKEN_URL) {
           router.replace('/login')
 
-          toast.add({
-            title: 'Authentication Error (401)',
-            description: 'Your session has expired. Please log in again.',
-            color: 'error',
-            icon: 'i-heroicons-exclamation-circle'
-          })
+          showRefreshTokenExpiredToast()
 
           return
         }
 
         // access token 过期
-        await userStore.handleRefreshToken()
+        const success = await userStore.handleRefreshToken()
 
-        const headers = { ...options.headers, Authorization: userStore.authorization! }
+        if (success) {
+          const headers = { ...options.headers, Authorization: userStore.authorization! }
 
-        useApiRequest(request as string, { ...options, headers })
+          useApiRequest(request as string, { ...options, headers })
+        } else {
+          router.replace('/login')
+
+          showRefreshTokenExpiredToast()
+        }
 
         return
       }

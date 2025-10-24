@@ -28,7 +28,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      API_BASE_URL: import.meta.env.NUXT_PUBLIC_API_BASE_URL
+      API_BASE_URL: import.meta.env.NUXT_PUBLIC_API_BASE_URL,
+      SERVER_SUCCESS_CODE: import.meta.env.NUXT_SERVER_SUCCESS_CODE,
+      SERVER_REFRESH_TOKEN_URL: import.meta.env.NUXT_SERVER_REFRESH_TOKEN_URL
     }
   },
 
