@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useUserStore } from '~/store/user'
+
 const route = useRoute()
+const userStore = useUserStore()
+
+const { userInfo } = storeToRefs(userStore)
 
 const items = computed(() => [{
   label: 'Docs',
@@ -33,29 +38,35 @@ const items = computed(() => [{
     <template #right>
       <UColorModeButton />
 
-      <UButton
-        icon="i-lucide-log-in"
-        color="neutral"
-        variant="ghost"
-        to="/login"
-        class="lg:hidden"
-      />
+      <div v-if="userInfo.id">
+        {{ userInfo.fullName }}
+      </div>
 
-      <UButton
-        label="Sign in"
-        color="neutral"
-        variant="outline"
-        to="/login"
-        class="hidden lg:inline-flex"
-      />
+      <template v-else>
+        <UButton
+          icon="i-lucide-log-in"
+          color="neutral"
+          variant="ghost"
+          to="/login"
+          class="lg:hidden"
+        />
 
-      <UButton
-        label="Sign up"
-        color="neutral"
-        trailing-icon="i-lucide-arrow-right"
-        class="hidden lg:inline-flex"
-        to="/signup"
-      />
+        <UButton
+          label="Sign in"
+          color="neutral"
+          variant="outline"
+          to="/login"
+          class="hidden lg:inline-flex"
+        />
+
+        <UButton
+          label="Sign up"
+          color="neutral"
+          trailing-icon="i-lucide-arrow-right"
+          class="hidden lg:inline-flex"
+          to="/signup"
+        />
+      </template>
     </template>
 
     <template #body>
