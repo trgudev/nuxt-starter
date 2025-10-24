@@ -2,10 +2,11 @@ TODO
 
 
 
-- [ ] docker 支持
+
 - [ ] nuxt img 示例
 - [ ] vueuse 示例
 
+- [x] docker 支持
 - [x] 环境变量区分
 - [x] pinia 支持
 - [x] loading 指令
