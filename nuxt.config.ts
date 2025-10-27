@@ -53,7 +53,7 @@ export default defineNuxtConfig({
     provider: 'iconify',
     customCollections: [
       {
-        prefix: 'ai',
+        prefix: 'local',
         dir: './app/assets/icons'
       }
     ]
