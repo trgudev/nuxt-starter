@@ -46,7 +46,6 @@ const dashboardItems = computed(() => [{
         class="relative"
       >
         <UDropdownMenu
-
           :items="dashboardItems"
           :content="{
             align: 'start',
