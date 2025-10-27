@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "antfu.iconify",
+    "vue.volar",
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
