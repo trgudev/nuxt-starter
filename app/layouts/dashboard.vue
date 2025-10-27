@@ -6,6 +6,13 @@ const groups = computed(() => [{
   label: 'Go to',
   items: links.flat()
 }])
+
+useSeoMeta({
+  title: 'Dashboard',
+  ogTitle: 'Dashboard',
+  description: 'Dashboard for Nuxt Starter',
+  ogDescription: 'Dashboard for Nuxt Starter'
+})
 </script>
 
 <template>
