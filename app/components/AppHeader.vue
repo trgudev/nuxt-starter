@@ -5,6 +5,8 @@ const userStore = useUserStore()
 
 const { userInfo } = storeToRefs(userStore)
 
+const { links } = useLinks()
+
 const items = computed(() => [{
   label: 'Docs',
   to: '/docs'
@@ -17,11 +19,6 @@ const items = computed(() => [{
 }, {
   label: 'Changelog',
   to: '/changelog'
-}])
-
-const dashboardItems = computed(() => [{
-  label: 'dashboard',
-  to: '/dashboard/home'
 }])
 </script>
 
@@ -46,7 +43,7 @@ const dashboardItems = computed(() => [{
         class="relative"
       >
         <UDropdownMenu
-          :items="dashboardItems"
+          :items="links"
           :content="{
             align: 'start',
             side: 'bottom',
