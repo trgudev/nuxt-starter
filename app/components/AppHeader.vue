@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { useUserStore } from '~/store/user'
-
-const userStore = useUserStore()
-
-const { userInfo } = storeToRefs(userStore)
-
 const { links } = useLinks()
 
 const items = computed(() => [{
@@ -39,7 +33,6 @@ const items = computed(() => [{
       <UColorModeButton />
 
       <div
-        v-if="userInfo.id"
         class="relative"
       >
         <UDropdownMenu
@@ -54,38 +47,36 @@ const items = computed(() => [{
           }"
         >
           <UButton
-            :label="userInfo.fullName"
+            label="Dashboard"
             color="neutral"
             variant="ghost"
           />
         </UDropdownMenu>
       </div>
 
-      <template v-else>
-        <UButton
-          icon="i-lucide-log-in"
-          color="neutral"
-          variant="ghost"
-          to="/login"
-          class="lg:hidden"
-        />
+      <UButton
+        icon="i-lucide-log-in"
+        color="neutral"
+        variant="ghost"
+        to="/login"
+        class="lg:hidden"
+      />
 
-        <UButton
-          label="Sign in"
-          color="neutral"
-          variant="outline"
-          to="/login"
-          class="hidden lg:inline-flex"
-        />
+      <UButton
+        label="Sign in"
+        color="neutral"
+        variant="outline"
+        to="/login"
+        class="hidden lg:inline-flex"
+      />
 
-        <UButton
-          label="Sign up"
-          color="neutral"
-          trailing-icon="i-lucide-arrow-right"
-          class="hidden lg:inline-flex"
-          to="/signup"
-        />
-      </template>
+      <UButton
+        label="Sign up"
+        color="neutral"
+        trailing-icon="i-lucide-arrow-right"
+        class="hidden lg:inline-flex"
+        to="/signup"
+      />
     </template>
 
     <template #body>
