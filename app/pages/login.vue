@@ -56,6 +56,7 @@ const schema = z.object({
 type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  toast.add({ title: 'Error', color: 'warning', description: '注意！github page 上无法运行服务端代码' })
   await userStore.handleLogin(payload.data)
 }
 </script>
@@ -84,14 +85,19 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         to="/"
         class="text-primary font-medium"
         tabindex="-1"
-      >Forgot password?</ULink>
+      >
+        Forgot password?
+      </ULink>
     </template>
 
     <template #footer>
-      By signing in, you agree to our <ULink
+      By signing in, you agree to our
+      <ULink
         to="/"
         class="text-primary font-medium"
-      >Terms of Service</ULink>.
+      >
+        Terms of Service
+      </ULink>.
     </template>
   </UAuthForm>
 </template>
