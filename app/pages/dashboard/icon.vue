@@ -99,34 +99,37 @@ defineOptions({
       <UCard>
         <template #header>
           在线图标
-
-          <p>进入网站 https://icon-sets.iconify.design/lucide/，找到想要的图标</p>
-          <p>点击图标，复制图标名称放到 UIcon 的 name 上</p>
-
-          <div class="space-x-4 mt-4">
-            <UIcon name="lucide:cat" />
-            <UIcon name="mingcute:airplane-line" />
-            <UIcon name="mingcute:apple-fill" />
-          </div>
-
-          <div class="space-x-4 mt-4">
-            <UIcon
-              class="text-green-400"
-              size="48"
-              name="lucide:cat"
-            />
-            <UIcon
-              class="text-green-400"
-              size="48"
-              name="mingcute:airplane-line"
-            />
-            <UIcon
-              class="text-green-400"
-              size="48"
-              name="mingcute:apple-fill"
-            />
-          </div>
+          <p class="text-gray-400 text-sm">
+            注意：在线图标需要网络加载，首次加载会有延迟，后续从缓存读取
+          </p>
         </template>
+
+        <p>进入网站 https://icon-sets.iconify.design/lucide/，找到想要的图标</p>
+        <p>点击图标，复制图标名称放到 UIcon 的 name 上</p>
+
+        <div class="space-x-4 mt-4">
+          <UIcon name="lucide:cat" />
+          <UIcon name="mingcute:airplane-line" />
+          <UIcon name="mingcute:apple-fill" />
+        </div>
+
+        <div class="space-x-4 mt-4">
+          <UIcon
+            class="text-green-400"
+            size="48"
+            name="lucide:cat"
+          />
+          <UIcon
+            class="text-green-400"
+            size="48"
+            name="mingcute:airplane-line"
+          />
+          <UIcon
+            class="text-green-400"
+            size="48"
+            name="mingcute:apple-fill"
+          />
+        </div>
       </UCard>
     </template>
   </UDashboardPanel>
