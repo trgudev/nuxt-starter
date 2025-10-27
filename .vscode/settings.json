@@ -19,8 +19,9 @@
     "vue"
   ],
 
-  "prettier.enable": false,
-
   "fileHeader.config.autoAdd": false,
-  "fileheader.autoInsertOnCreateFile": false
+  "fileheader.autoInsertOnCreateFile": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
