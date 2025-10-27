@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { useUserStore } from '~/store/user'
 
-const route = useRoute()
 const userStore = useUserStore()
 
 const { userInfo } = storeToRefs(userStore)
 
 const items = computed(() => [{
   label: 'Docs',
-  to: '/docs',
-  active: route.path.startsWith('/docs')
+  to: '/docs'
 }, {
   label: 'Pricing',
   to: '/pricing'
@@ -19,6 +17,11 @@ const items = computed(() => [{
 }, {
   label: 'Changelog',
   to: '/changelog'
+}])
+
+const dashboardItems = computed(() => [{
+  label: 'dashboard',
+  to: '/dashboard/home'
 }])
 </script>
 
@@ -38,8 +41,28 @@ const items = computed(() => [{
     <template #right>
       <UColorModeButton />
 
-      <div v-if="userInfo.id">
-        {{ userInfo.fullName }}
+      <div
+        v-if="userInfo.id"
+        class="relative"
+      >
+        <UDropdownMenu
+
+          :items="dashboardItems"
+          :content="{
+            align: 'start',
+            side: 'bottom',
+            sideOffset: 8
+          }"
+          :ui="{
+            content: 'w-48'
+          }"
+        >
+          <UButton
+            :label="userInfo.fullName"
+            color="neutral"
+            variant="ghost"
+          />
+        </UDropdownMenu>
       </div>
 
       <template v-else>

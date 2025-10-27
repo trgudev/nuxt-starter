@@ -19,11 +19,26 @@ const handleGetUserInfo = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col mt-20 items-center justify-center gap-4">
-    <div>{{ userInfo }}</div>
+  <UDashboardPanel id="home">
+    <template #header>
+      <UDashboardNavbar
+        title="Home"
+        :ui="{ right: 'gap-3' }"
+      >
+        <template #leading>
+          <UDashboardSidebarCollapse />
+        </template>
+      </UDashboardNavbar>
+    </template>
 
-    <UButton @click="handleGetUserInfo">
-      获取用户信息
-    </UButton>
-  </div>
+    <template #body>
+      <div class="flex flex-col mt-20 items-center justify-center gap-4">
+        <div>{{ userInfo }}</div>
+
+        <UButton @click="handleGetUserInfo">
+          获取用户信息
+        </UButton>
+      </div>
+    </template>
+  </UDashboardPanel>
 </template>
