@@ -33,11 +33,14 @@ const handleGetUserInfo = async () => {
 
     <template #body>
       <UCard variant="soft">
-        <p>refresh token 测试</p>
         <p>点击按钮，查看network的请求，目前token设置过期时间为1min，相隔1min之后请求，会刷新token并重新发起请求</p>
+        <p>后端代码在server目录下，仅做模拟接口，需要根据项目的实际情况修改</p>
       </UCard>
 
       <UCard>
+        <template #header>
+          refresh token 测试
+        </template>
         <ul>
           <li>{{ userInfo.fullName }}</li>
           <li>{{ userInfo.email }}</li>
