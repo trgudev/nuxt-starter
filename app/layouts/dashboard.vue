@@ -3,14 +3,24 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 
 const open = ref(false)
 
-const links = [{
-  label: 'Home',
-  icon: 'i-lucide-house',
-  to: '/dashboard/home',
-  onSelect: () => {
-    open.value = false
+const links = [
+  {
+    label: 'Home',
+    icon: 'i-lucide-house',
+    to: '/dashboard/home',
+    onSelect: () => {
+      open.value = false
+    }
+  },
+  {
+    label: 'Token',
+    icon: 'i-lucide-key',
+    to: '/dashboard/token',
+    onSelect: () => {
+      open.value = false
+    }
   }
-}] satisfies NavigationMenuItem[]
+] satisfies NavigationMenuItem[]
 
 const groups = computed(() => [{
   id: 'links',
