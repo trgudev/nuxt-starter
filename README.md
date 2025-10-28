@@ -105,7 +105,6 @@ pnpm dev
 ```
 .
 ├── .github/                # GitHub Actions 工作流
-├── .husky/                 # Git 钩子
 ├── .vscode/                # VSCode 编辑器推荐设置
 ├── app/                    # Nuxt 3 App 目录 (取代 app.vue)
 │   ├── assets/             # 静态资源 (CSS, 字体等)
@@ -123,7 +122,7 @@ pnpm dev
 ├── .npmrc                  # pnpm 配置文件
 ├── Dockerfile              # Docker 部署文件
 ├── eslint.config.mjs       # ESLint 配置文件
-├── nuxt.config.ts          # Nuxt 3 核心配置文件
+├── nuxt.config.ts          # Nuxt 核心配置文件
 ├── package.json            # 项目依赖和脚本
 ├── pnpm-lock.yaml          # pnpm 锁定文件
 ├── pnpm-workspace.yaml     # pnpm Monorepo 配置文件
