@@ -3,6 +3,7 @@ TODO
 
 
 
+- [ ] loading 指令示例
 - [ ] nuxt img 示例
 - [ ] vueuse 示例
 

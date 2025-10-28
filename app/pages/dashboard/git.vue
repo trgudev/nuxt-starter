@@ -48,6 +48,13 @@ defineOptions({
             pnpm commit
           </UBadge>。
         </p>
+
+        <p>
+          如果需要临时取消检查，可运行
+          <UBadge variant="soft">
+            git commit -m "commit message" --no-verify
+          </UBadge>
+        </p>
       </UCard>
     </template>
   </UDashboardPanel>
