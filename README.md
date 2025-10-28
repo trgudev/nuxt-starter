@@ -7,9 +7,9 @@
 <p align="center"> <a href="https://trgudev.github.io/nuxt-starter/" target="_blank"> <img src="https://img.shields.io/badge/-%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88-brightgreen?style=for-the-badge&logo=githubpages" alt="Live Demo"> </a> </p>
 
 <p align="center"> 
-  <a href="https://github.com/trgudev/nuxt-starter/blob/main/LICENSE" target="_blank">
+  <!-- <a href="https://github.com/trgudev/nuxt-starter/blob/main/LICENSE" target="_blank">
     <img src="https://img.shields.io/github/license/trgudev/nuxt-starter?style=flat-square" alt="GitHub License"> 
-  </a> 
+  </a>  -->
   <a href="https://github.com/trgudev/nuxt-starter/stargazers" target="_blank">
     <img src="https://img.shields.io/github/stars/trgudev/nuxt-starter?style=flat-square" alt="GitHub stars"> 
   </a> 
