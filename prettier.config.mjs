@@ -1,5 +1,5 @@
 // @see: https://www.prettier.cn
-module.exports = {
+export default {
   printWidth: 130,
   tabWidth: 2,
   useTabs: false,
