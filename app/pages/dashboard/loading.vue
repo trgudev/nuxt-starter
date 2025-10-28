@@ -30,9 +30,9 @@ const loading = ref(true)
           如果你不喜欢这个鼠鼠，请自行修改
           <UBadge variant="soft">
             ~/app/assets/css/loading.css
-          </UBadge>和
+          </UBadge>、
           <UBadge variant="soft">
-            ~/app/plugins/loading.client.ts
+            ~/app/plugins/loading.client.ts 的 spinnerHtml
           </UBadge>
         </p>
       </UCard>
