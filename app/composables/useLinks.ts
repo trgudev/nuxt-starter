@@ -37,6 +37,14 @@ export const useLinks = () => {
       }
     },
     {
+      label: 'Loading',
+      icon: 'i-lucide-loader',
+      to: '/dashboard/loading',
+      onSelect: () => {
+        open.value = false
+      }
+    },
+    {
       label: 'Form',
       icon: 'fluent:form-20-regular',
       to: '/dashboard/form',
