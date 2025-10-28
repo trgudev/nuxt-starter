@@ -3,25 +3,20 @@
 
 这是一个功能丰富、配置完善的 Nuxt 3 启动模板，旨在帮助你快速启动一个新项目。它集成了现代前端开发所需的各种工具和最佳实践，包括 UI 库、状态管理、代码规范、Docker 部署等。
 
-\<br /\>
 
-\<p align="center"\>
-\<a href="[https://trgudev.github.io/nuxt-starter/](https://trgudev.github.io/nuxt-starter/)" target="\_blank"\>
-\<img src="[https://img.shields.io/badge/-%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88-brightgreen?style=for-the-badge\&logo=githubpages](https://www.google.com/search?q=https://img.shields.io/badge/-%25E5%259C%25A8%25E7%25BA%25BF%25E9%25A2%2584%25E8%25A7%2588-brightgreen%3Fstyle%3Dfor-the-badge%26logo%3Dgithubpages)" alt="Live Demo"\>
-\</a\>
-\</p\>
+<p align="center"> <a href="https://trgudev.github.io/nuxt-starter/" target="_blank"> <img src="https://img.shields.io/badge/-%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88-brightgreen?style=for-the-badge&logo=githubpages" alt="Live Demo"> </a> </p>
 
-\<p align="center"\>
-\<a href="[https://github.com/trgudev/nuxt-starter/blob/main/LICENSE](https://www.google.com/search?q=https://github.com/trgudev/nuxt-starter/blob/main/LICENSE)" target="\_blank"\>
-\<img src="[https://img.shields.io/github/license/trgudev/nuxt-starter?style=flat-square](https://www.google.com/search?q=https://img.shields.io/github/license/trgudev/nuxt-starter%3Fstyle%3Dflat-square)" alt="GitHub License"\>
-\</a\>
-\<a href="[https://github.com/trgudev/nuxt-starter/stargazers](https://www.google.com/search?q=https://github.com/trgudev/nuxt-starter/stargazers)" target="\_blank"\>
-\<img src="[https://img.shields.io/github/stars/trgudev/nuxt-starter?style=flat-square](https://www.google.com/search?q=https://img.shields.io/github/stars/trgudev/nuxt-starter%3Fstyle%3Dflat-square)" alt="GitHub stars"\>
-\</a\>
-\<a href="[https://github.com/trgudev/nuxt-starter/network](https://www.google.com/search?q=https://github.com/trgudev/nuxt-starter/network)" target="\_blank"\>
-\<img src="[https://img.shields.io/github/forks/trgudev/nuxt-starter?style=flat-square](https://www.google.com/search?q=https://img.shields.io/github/forks/trgudev/nuxt-starter%3Fstyle%3Dflat-square)" alt="GitHub forks"\>
-\</a\>
-\</p\>
+<p align="center"> 
+  <a href="https://github.com/trgudev/nuxt-starter/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/trgudev/nuxt-starter?style=flat-square" alt="GitHub License"> 
+  </a> 
+  <a href="https://github.com/trgudev/nuxt-starter/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/trgudev/nuxt-starter?style=flat-square" alt="GitHub stars"> 
+  </a> 
+  <a href="https://github.com/trgudev/nuxt-starter/network" target="_blank"> 
+    <img src="https://img.shields.io/github/forks/trgudev/nuxt-starter?style=flat-square" alt="GitHub forks"> 
+  </a> 
+</p>
 
 ## ✨ 功能特性
 
