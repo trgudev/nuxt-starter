@@ -135,10 +135,6 @@ pnpm dev
 
 欢迎通过提交 Issues 或 Pull Requests 来为这个项目做出贡献。
 
-## 📄 许可证
-
-[MIT License](https://www.google.com/search?q=https://github.com/trgudev/nuxt-starter/blob/main/LICENSE) © 2024 [trgudev](https://www.google.com/search?q=https://github.com/trgudev)
-
 ## TODO
 
 - [ ] loading 指令示例
