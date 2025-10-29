@@ -21,7 +21,7 @@
 
   "fileHeader.config.autoAdd": false,
   "fileheader.autoInsertOnCreateFile": false,
-  "[vue]": {
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 }
