@@ -6,7 +6,7 @@ export default {
   quoteProps: 'as-needed',
   bracketSpacing: true,
   bracketSameLine: false,
-  arrowParens: 'avoid',
+  arrowParens: 'always',
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
