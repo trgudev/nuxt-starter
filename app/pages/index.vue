@@ -7,11 +7,13 @@
 const page = ref<Api.HomeManage.HomePageData>({
   features: {
     title: 'Everything You Need to Ship',
-    description: 'Stop building from scratch. Focus on your unique features while Nuxt UI handles the foundations with battle-tested components and patterns.',
+    description:
+      'Stop building from scratch. Focus on your unique features while Nuxt UI handles the foundations with battle-tested components and patterns.',
     items: [
       {
         title: 'Beautiful Design System',
-        description: 'Semantic color aliases, comprehensive design tokens, and Tailwind Variants for consistent, customizable styling.',
+        description:
+          'Semantic color aliases, comprehensive design tokens, and Tailwind Variants for consistent, customizable styling.',
         icon: 'i-lucide-palette'
       },
       {
@@ -44,13 +46,15 @@ const page = ref<Api.HomeManage.HomePageData>({
   sections: [
     {
       title: 'Powered by Nuxt UI Components',
-      description: 'Access the complete Nuxt UI component library with 100+ beautifully styled, accessible, and customizable Vue components. Everything you need to build professional SaaS applications.',
+      description:
+        'Access the complete Nuxt UI component library with 100+ beautifully styled, accessible, and customizable Vue components. Everything you need to build professional SaaS applications.',
       id: 'features',
       orientation: 'horizontal',
       features: [
         {
           name: '100+ UI Components',
-          description: 'From buttons to modals, data tables to forms - all styled with Tailwind CSS and accessible out of the box.',
+          description:
+            'From buttons to modals, data tables to forms - all styled with Tailwind CSS and accessible out of the box.',
           icon: 'i-lucide-package'
         },
         {
@@ -60,14 +64,16 @@ const page = ref<Api.HomeManage.HomePageData>({
         },
         {
           name: 'TypeScript First',
-          description: 'Full TypeScript support with auto-completion, type safety, and IntelliSense for every component and composable.',
+          description:
+            'Full TypeScript support with auto-completion, type safety, and IntelliSense for every component and composable.',
           icon: 'i-lucide-code-2'
         }
       ]
     },
     {
       title: 'Built for Modern SaaS',
-      description: 'Everything you need to launch and scale your SaaS. From beautiful marketing pages to complex dashboards, ship faster with production-ready patterns.',
+      description:
+        'Everything you need to launch and scale your SaaS. From beautiful marketing pages to complex dashboards, ship faster with production-ready patterns.',
       orientation: 'horizontal',
       reverse: true,
       features: [
@@ -78,7 +84,8 @@ const page = ref<Api.HomeManage.HomePageData>({
         },
         {
           name: 'Dark Mode Ready',
-          description: 'Automatic theme switching with smooth transitions. Respects system preferences and remembers user choice.',
+          description:
+            'Automatic theme switching with smooth transitions. Respects system preferences and remembers user choice.',
           icon: 'i-lucide-moon'
         },
         {
@@ -92,7 +99,8 @@ const page = ref<Api.HomeManage.HomePageData>({
 })
 
 const title = 'Nuxt UI Starter Template'
-const description = 'Create stunning, fast and production-ready SaaS applications with Nuxt UI. 100+ Vue components, authentication, dark mode, and enterprise features built on Tailwind CSS.'
+const description
+  = 'Create stunning, fast and production-ready SaaS applications with Nuxt UI. 100+ Vue components, authentication, dark mode, and enterprise features built on Tailwind CSS.'
 
 useSeoMeta({
   titleTemplate: '',
@@ -108,6 +116,20 @@ useSeoMeta({
     <UPageHero
       :title="title"
       :description="description"
+      :links="[
+        {
+          label: 'Get started',
+          to: '/dashboard/home',
+          trailingIcon: 'i-lucide-arrow-right'
+        },
+        {
+          label: 'GitHub',
+          to: 'https://github.com/trgudev/nuxt-starter',
+          color: 'neutral',
+          variant: 'subtle',
+          trailingIcon: 'i-simple-icons-github'
+        }
+      ]"
     >
       <template #top>
         <HeroBackground />
