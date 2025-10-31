@@ -2,6 +2,7 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({
   rules: {
+    'semi': ['error', 'never'],
     'vue/html-self-closing': 'error',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
