@@ -8,7 +8,7 @@ COPY package.json pnpm-lock.yaml .npmrc ./
 
 RUN pnpm install --frozen-lockfile
 
-COPY .env.prod .env.test ./
+COPY .env .env.prod .env.test ./
 COPY nuxt.config.ts tsconfig.json ./
 COPY app/ ./app/
 COPY server/ ./server/
