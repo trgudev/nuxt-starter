@@ -1,12 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/image',
-    '@pinia/nuxt', 
-    'pinia-plugin-persistedstate/nuxt'
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/image', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
 
   devtools: {
     enabled: true
@@ -61,5 +55,4 @@ export default defineNuxtConfig({
   },
 
   image: { quality: 80, format: ['webp'], domains: ['nuxtjs.org'], dir: 'assets/icons-img' }
-
 })
