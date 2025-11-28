@@ -17,9 +17,9 @@ export default defineEventHandler(async (event) => {
   const verification = verifyToken(token)
 
   if (!verification.valid) {
-    setResponseStatus(event, 401)
+    setResponseStatus(event, 200)
     return {
-      code: 1,
+      code: 1004,
       message: verification.error,
       data: null
     }
