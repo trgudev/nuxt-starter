@@ -8,21 +8,14 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
   const toast = useToast()
   const router = useRouter()
 
-  const BASE_URL = config.public.API_BASE_URL
-  const LOGIN_URL = config.public.SERVER_LOGIN_URL
-  const REFRESH_URL = config.public.SERVER_REFRESH_TOKEN_URL
+  const { API_BASE_URL, SERVER_LOGIN_URL, SERVER_REFRESH_TOKEN_URL, ACCESS_TOKEN_EXPIRED_CODE, SERVER_SUCCESS_CODE }
+    = config.public
 
-  const showRefreshTokenExpiredToast = () => {
-    toast.add({
-      title: 'Authentication Error (401)',
-      description: 'Your token has expired. Please log in again.',
-      color: 'error',
-      icon: 'i-heroicons-exclamation-circle'
-    })
-  }
+  const CODE_ACCESS_TOKEN_EXPIRED = Number(ACCESS_TOKEN_EXPIRED_CODE)
+  const CODE_SUCCESS = Number(SERVER_SUCCESS_CODE)
 
   const defaults: FetchOptions<'json'> = {
-    baseURL: BASE_URL,
+    baseURL: API_BASE_URL,
 
     onRequest({ options }) {
       const token = userStore.authorization
@@ -32,11 +25,33 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
       }
     },
 
-    // http 状态码 200 201 302 等
-    onResponse({ response }) {
+    async onResponse({ response }) {
       const apiResponse = response._data as App.Service.Response<T>
 
-      if (response.status < 400 && apiResponse?.code !== Number(config.public.SERVER_SUCCESS_CODE)) {
+      if (apiResponse?.code === CODE_ACCESS_TOKEN_EXPIRED) {
+        const requestUrl = response.url || url
+
+        if (!requestUrl.includes(SERVER_LOGIN_URL) && !requestUrl.includes(SERVER_REFRESH_TOKEN_URL)) {
+          const success = await userStore.handleRefreshToken()
+
+          if (success) {
+            const retryResponse = await useApiRequest<T>(url, options)
+            response._data = retryResponse
+            return
+          } else {
+            userStore.logout(true)
+            toast.add({
+              title: 'Authentication Expired',
+              description: 'Please log in again.',
+              color: 'error',
+              icon: 'i-heroicons-exclamation-circle'
+            })
+            return Promise.reject(new Error('Authentication expired'))
+          }
+        }
+      }
+
+      if (response.status < 400 && apiResponse?.code !== CODE_SUCCESS) {
         const description = apiResponse?.message || 'An unknown error occurred.'
         toast.add({
           title: 'Operation Failed',
@@ -44,28 +59,30 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
           color: 'error',
           icon: 'i-heroicons-exclamation-triangle'
         })
-        return Promise.reject(description)
+        return Promise.reject(new Error(description))
       }
     },
 
     async onResponseError({ request, response }) {
       const status = response.status
       const message = response._data?.message || 'An unexpected error occurred.'
-
       const requestUrl = request.toString()
 
+      // HTTP 401 处理
       if (status === 401) {
-        // Refresh Token 过期，登出
-        if (requestUrl.includes(REFRESH_URL)) {
+        // 排除登录接口本身的报错
+        if (!requestUrl.includes(SERVER_LOGIN_URL)) {
+          userStore.logout(false)
+
           router.replace('/login')
-          showRefreshTokenExpiredToast()
-          return
+          toast.add({
+            title: 'Authentication Error',
+            description: 'Your session has expired. Please log in again.',
+            color: 'error',
+            icon: 'i-heroicons-exclamation-circle'
+          })
         }
-
-        // access token 过期：直接 return，让错误抛出到下方的 .catch 中处理重试
-        if (!requestUrl.includes(LOGIN_URL)) return
-
-        // login 401 不处理
+        throw new Error(message)
       }
 
       toast.add({
@@ -81,27 +98,5 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
 
   const mergedOptions = defu(options, defaults)
 
-  return $fetch<App.Service.Response<T>>(url, mergedOptions).catch(async (error) => {
-    const status = error.response?.status
-    const requestUrl = error.request?.toString() || url
-
-    // access token 过期：尝试刷新 Token
-    if (status === 401 && !requestUrl.includes(LOGIN_URL) && !requestUrl.includes(REFRESH_URL)) {
-      const success = await userStore.handleRefreshToken()
-
-      if (success) {
-        // 刷新成功：
-        // 注意：这里不需要手动设置 headers，因为递归调用会重新触发 onRequest，
-        // onRequest 会从 userStore 中拿到最新的 authorization。
-        return useApiRequest<T>(url, options)
-      } else {
-        // 刷新失败：
-        router.replace('/login')
-        showRefreshTokenExpiredToast()
-        return Promise.reject(error)
-      }
-    }
-
-    throw error
-  })
+  return $fetch<App.Service.Response<T>>(url, mergedOptions)
 }

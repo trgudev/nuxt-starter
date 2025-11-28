@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { useUserStore } from '~/store/user'
 
 definePageMeta({
@@ -50,11 +50,13 @@ const handleGetUserInfo = async () => {
         <template #header>
           refresh token 测试
         </template>
-        <ul>
-          <li>{{ userInfo.fullName }}</li>
-          <li>{{ userInfo.email }}</li>
-          <li>{{ userInfo.createdAt }}</li>
-        </ul>
+        <ClientOnly>
+          <ul>
+            <li>{{ userInfo.fullName }}</li>
+            <li>{{ userInfo.email }}</li>
+            <li>{{ userInfo.createdAt }}</li>
+          </ul>
+        </ClientOnly>
 
         <UButton
           class="mt-2"
