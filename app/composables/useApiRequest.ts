@@ -6,7 +6,6 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
   const config = useRuntimeConfig()
   const userStore = useUserStore()
   const toast = useToast()
-  const router = useRouter()
 
   const { API_BASE_URL, SERVER_LOGIN_URL, SERVER_REFRESH_TOKEN_URL, ACCESS_TOKEN_EXPIRED_CODE, SERVER_SUCCESS_CODE }
     = config.public
@@ -72,9 +71,8 @@ export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}
       if (status === 401) {
         // 排除登录接口本身的报错
         if (!requestUrl.includes(SERVER_LOGIN_URL)) {
-          userStore.logout(false)
+          userStore.logout()
 
-          router.replace('/login')
           toast.add({
             title: 'Authentication Error',
             description: 'Your session has expired. Please log in again.',

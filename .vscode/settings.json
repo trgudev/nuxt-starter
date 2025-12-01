@@ -21,4 +21,7 @@
 
   "fileHeader.config.autoAdd": false,
   "fileheader.autoInsertOnCreateFile": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
 }
