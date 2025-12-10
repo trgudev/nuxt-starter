@@ -56,5 +56,5 @@ export default defineNuxtConfig({
     ]
   },
 
-  image: { quality: 80, format: ['webp'], domains: ['nuxtjs.org'], dir: 'assets/icons-img' }
+  image: { quality: 80, format: ['webp'], dir: 'assets/images' }
 })
