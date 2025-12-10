@@ -113,58 +113,53 @@ useSeoMeta({
 
 <template>
   <div v-if="page">
-    <NuxtImg
-      src="https://nationalparkexpress.com/wp-content/uploads/2022/05/Views-of-Zion.jpg"
-      format="webp"
+    <UPageHero
+      :title="title"
+      :description="description"
+      :links="[
+        {
+          label: 'Get started',
+          to: '/dashboard/home',
+          trailingIcon: 'i-lucide-arrow-right'
+        },
+        {
+          label: 'GitHub',
+          to: 'https://github.com/trgudev/nuxt-starter',
+          color: 'neutral',
+          variant: 'subtle',
+          trailingIcon: 'i-simple-icons-github'
+        }
+      ]"
     >
-      <UPageHero
-        :title="title"
-        :description="description"
-        :links="[
-          {
-            label: 'Get started',
-            to: '/dashboard/home',
-            trailingIcon: 'i-lucide-arrow-right'
-          },
-          {
-            label: 'GitHub',
-            to: 'https://github.com/trgudev/nuxt-starter',
-            color: 'neutral',
-            variant: 'subtle',
-            trailingIcon: 'i-simple-icons-github'
-          }
-        ]"
-      >
-        <template #top>
-          <HeroBackground />
-        </template>
-      </UPageHero>
+      <template #top>
+        <HeroBackground />
+      </template>
+    </UPageHero>
 
-      <UPageSection
-        v-for="(section, index) in page.sections"
-        :key="index"
-        :title="section.title"
-        :description="section.description"
-        :orientation="section.orientation as 'horizontal'"
-        :reverse="section.reverse"
-        :features="section.features"
-      >
-        <ImagePlaceholder />
-      </UPageSection>
+    <UPageSection
+      v-for="(section, index) in page.sections"
+      :key="index"
+      :title="section.title"
+      :description="section.description"
+      :orientation="section.orientation as 'horizontal'"
+      :reverse="section.reverse"
+      :features="section.features"
+    >
+      <ImagePlaceholder />
+    </UPageSection>
 
-      <UPageSection
-        :title="page.features.title"
-        :description="page.features.description"
-      >
-        <UPageGrid>
-          <UPageCard
-            v-for="(item, index) in page.features.items"
-            :key="index"
-            v-bind="item"
-            spotlight
-          />
-        </UPageGrid>
-      </UPageSection>
-    </NuxtImg>
+    <UPageSection
+      :title="page.features.title"
+      :description="page.features.description"
+    >
+      <UPageGrid>
+        <UPageCard
+          v-for="(item, index) in page.features.items"
+          :key="index"
+          v-bind="item"
+          spotlight
+        />
+      </UPageGrid>
+    </UPageSection>
   </div>
 </template>
