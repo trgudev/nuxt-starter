@@ -35,7 +35,6 @@
       - 提供了统一的请求示例和封装。
   - **代码规范**:
       - [ESLint](https://eslint.org/) - 用于代码质量检查。
-      - [Prettier](https://prettier.io/) - 用于代码格式化。
   - **Git 工作流**:
       - [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/okonet/lint-staged) - 在 Git 提交前自动执行代码检查和格式化。
       - 包含 `cz-conventional-changelog` 提交规范示例。
@@ -95,7 +94,6 @@ pnpm dev
 | `pnpm preview` | 在本地预览生产环境构建后的项目 |
 | `pnpm lint` | 运行 ESLint 检查代码规范 |
 | `pnpm lint:fix` | 运行 ESLint 并自动修复问题 |
-| `pnpm format` | 使用 Prettier 格式化所有代码 |
 | `pnpm prepare` | 安装 Git 提交钩子 (Husky) |
 
 ## 📁 项目结构
@@ -126,7 +124,6 @@ pnpm dev
 ├── package.json            # 项目依赖和脚本
 ├── pnpm-lock.yaml          # pnpm 锁定文件
 ├── pnpm-workspace.yaml     # pnpm Monorepo 配置文件
-├── prettier.config.mjs     # Prettier 配置文件
 └── tsconfig.json           # TypeScript 配置文件
 ```
 
