@@ -4,6 +4,8 @@
     "source.organizeImports": "never"
   },
 
+  "prettier.enable": false,
+
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
 
   "eslint.validate": [
