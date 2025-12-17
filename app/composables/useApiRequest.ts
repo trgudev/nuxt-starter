@@ -2,16 +2,17 @@ import { $fetch, type FetchOptions } from 'ofetch'
 import { useUserStore } from '~/store/user'
 import { defu } from 'defu'
 
+const CODE_SUCCESS = 0
+const CODE_ACCESS_TOKEN_EXPIRED = 1004
+const SERVER_REFRESH_TOKEN_URL = '/api/auth/refresh'
+const SERVER_LOGIN_URL = '/api/auth/login'
+
 export const useApiRequest = <T>(url: string, options: FetchOptions<'json'> = {}): Promise<App.Service.Response<T>> => {
   const config = useRuntimeConfig()
   const userStore = useUserStore()
   const toast = useToast()
 
-  const { API_BASE_URL, SERVER_LOGIN_URL, SERVER_REFRESH_TOKEN_URL, ACCESS_TOKEN_EXPIRED_CODE, SERVER_SUCCESS_CODE }
-    = config.public
-
-  const CODE_ACCESS_TOKEN_EXPIRED = Number(ACCESS_TOKEN_EXPIRED_CODE)
-  const CODE_SUCCESS = Number(SERVER_SUCCESS_CODE)
+  const { API_BASE_URL } = config.public
 
   const defaults: FetchOptions<'json'> = {
     baseURL: API_BASE_URL,
