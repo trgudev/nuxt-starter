@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev --dotenv .env.test",
-    "build:test": "nuxt build --dotenv .env.test",
-    "build": "nuxt build --dotenv .env.prod",
+    "dev": "nuxt dev",
+    "build:test": "nuxt build",
+    "build": "nuxt build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
@@ -21,7 +21,6 @@
     "@nuxt/ui": "^4.2.1",
     "@pinia/nuxt": "^0.11.3",
     "dayjs": "^1.11.19",
-    "dotenv": "^17.2.3",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1"
