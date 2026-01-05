@@ -8,23 +8,13 @@ COPY package.json pnpm-lock.yaml .npmrc ./
 
 RUN pnpm install --frozen-lockfile
 
-COPY .env .env.prod .env.test ./
-COPY nuxt.config.ts tsconfig.json ./
-COPY app/ ./app/
-COPY server/ ./server/
-COPY public/ ./public/
+COPY . .
 
-ARG BUILD_ENV=test
-
-RUN if [ "$BUILD_ENV" = "prod" ]; then \
-  pnpm build; \
-  else \
-  pnpm build:test; \
-  fi
+RUN pnpm build
 
 FROM node:22-alpine
 
-RUN apk add --no-cache dumb-init curl
+RUN apk add --no-cache dumb-init   curl
 
 RUN addgroup -g 1001 appuser && \
   adduser -u 1001 -G appuser -D appuser

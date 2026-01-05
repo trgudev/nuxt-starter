@@ -1,8 +1,30 @@
+# Git
 .git
-.DS_Store
+.gitignore
 
+# System
+.DS_Store
+*.log
+
+# Dependencies
 node_modules
 
+# Build outputs
 .nuxt
 .output
 dist
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Environment
+.env*
+
+# Documentation
+README*.md
+
+# IDE
+.vscode
+.idea
+*.swp

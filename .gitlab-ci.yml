@@ -1,0 +1,2 @@
+include:
+  - component: $CI_SERVER_FQDN/ops/gitlab-ci-components/nuxt-app@~latest
