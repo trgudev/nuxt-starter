@@ -1,6 +1,7 @@
 import { useFetch, type UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
 
+// 查询参数使用query，params被弃用了
 export function useApiFetch<T>(url: string, options: UseFetchOptions<App.Service.Response<T>, T> = {}) {
   const config = useRuntimeConfig()
 
