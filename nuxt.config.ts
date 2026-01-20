@@ -29,7 +29,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true }
+    // prerender 的页面拿不到环境变量，因为在build阶段就生成页面了
+    '/': { isr: 120 }
   },
 
   compatibilityDate: '2025-01-15',
